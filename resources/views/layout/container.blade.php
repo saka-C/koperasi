@@ -17,7 +17,7 @@
         </div>
     </div>
 
-<script src="{{ asset('/js/script.js')}}"></script>
+{{-- <script src="{{ asset('/js/script.js')}}"></script> --}}
 <script src="{{ asset('/js/view.js')}}"></script>
 </body>
 </html>

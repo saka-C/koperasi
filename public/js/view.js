@@ -26,3 +26,7 @@ btnPopup.addEventListener("click", (e) => {
 function closeBtn(){
     walletPopup.classList.remove("show");
 }
+
+function goBack() {
+    window.history.back(); // Fungsi untuk kembali ke halaman sebelumnya
+}

@@ -29,6 +29,3 @@ function selectRadioButton(id, describeElement) {
     }
 }
 
-function goBack() {
-    window.history.back(); // Fungsi untuk kembali ke halaman sebelumnya
-}

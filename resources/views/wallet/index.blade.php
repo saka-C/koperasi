@@ -24,10 +24,15 @@
                         <td>{{ $item->wallet }}</td>
                         <td>{{ $item->type }}</td>
                         <td>-</td>
-                        <td class="date-column">{{ $item->created_at->format('d M Y') }}<span>{{ $item->created_at->format('h:i A') }}</span></td>
+                        <td class="date-column">
+                            {{ $item->created_at->format('d M Y') }}<span>{{ $item->created_at->format('h:i A') }}</span>
+                        </td>
                         <td><a href="#">Lihat</a></td>
                     </tr>
                 @empty
+                    <tr>
+                        <td colspan="9" align="center">Dompet Belum Tersedia</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>

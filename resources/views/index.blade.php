@@ -11,6 +11,7 @@
             <div class="balence">
                 <span>Saldo Total</span>
                 <span class="bold">Rp.{{ $totalAmount }}</span>
+
             </div>
         </div>
 
@@ -45,15 +46,24 @@
                 <div class="earn-bar green" style="background-color: #C5EBAA;">
                     <span>{{ $incomePercentage }}%</span>
                 </div>
-                <span class="info">Sebagian pemasukan terbesar mu adalah <span
-                        class="bold">{{ $largestIncomeCategoryName }}</span></span>
+                @if ($largestIncomeCategoryName != null)
+                    <span class="info">Sebagian pemasukan terbesar mu adalah <span
+                            class="bold">{{ $largestIncomeCategoryName }}</span></span>
+                @else
+                    <span class="info">Sebagian pemasukan terbesar mu adalah <span class="bold">Belum
+                            Tersedia</span></span>
+                @endif
             </div>
             <div class="month-bar">
                 <div class="spen-bar red" style="background-color: #F2C18D;">
                     <span>{{ $expensePercentage }}%</span>
                 </div>
-                <span class="info">Pengeluaran terbesar mu adalah kategori <span
-                        class="bold">{{ $largestExpenseCategoryName }}</span></span>
+                @if ($largestExpenseCategoryName != null)
+                    <span class="info">Pengeluaran terbesar mu adalah kategori <span
+                            class="bold">{{ $largestExpenseCategoryName }}</span></span>
+                @else
+                    <span class="info">Sebagian pemasukan terbesar mu adalah <span class="bold">Belum Tersedia</span></span>
+                @endif
             </div>
         </div>
         <div class="section-bottom-month">
@@ -105,15 +115,9 @@
                         @endif
                     </tr>
                 @empty
-
                     <tr>
-                        <td>Gaji Bulanan</td>
-                        <td>Salary</td>
-                        <td>Rp.5.000.000</td>
-                        <td>Cimbniaga</td>
-                        <td class="date-column">1 Apr 2024 <span>09.00 PM</span></td>
-                        <td><a href="#">Lihat</a></td>
-                        <td class="indicator in">
+                        <td colspan="9" align="center">Belum Terjadi Transaksi</td>
+                        <td class="indicator out">
                             <p>.</p>
                         </td>
                     </tr>

@@ -29,7 +29,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="9" align="center">Kategory Belum Tersedia</td>
+                        <td colspan="9" align="center">Kategori Belum Tersedia</td>
                     </tr>
                 @endforelse
             </tbody>

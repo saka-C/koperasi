@@ -48,7 +48,7 @@ class IndexController extends Controller
             ->get();
 
         $totalTransaction = $categoryTotals->sum('total_amount');
-        
+
         $largestIncomeCategory = $categoryTotals->where('type', 'Pemasukan')->max('total_amount');
 
         $largestExpenseCategory = $categoryTotals->where('type', 'Pengeluaran')->max('total_amount');
@@ -58,10 +58,25 @@ class IndexController extends Controller
         $largestExpenseCategoryName = $categoryTotals->where('type', 'Pengeluaran')->where('total_amount', $largestExpenseCategory)->pluck('category')->first();
 
         //Persentasi Pemasukan & Pengeluaran
-        $incomePercentage = round(($largestIncomeCategory / $totalTransaction) * 100);
-        $expensePercentage = round(($largestExpenseCategory / $totalTransaction) * 100);
+        if ($totalTransaction != 0) {
+            if ($incomeMonth != 0) {
+                $incomePercentage = round(($largestIncomeCategory / $incomeMonth) * 100);
+            } else {
+                $incomePercentage = 0;
+            }
+            
+            if ($outcomeMonth != 0) {
+                $expensePercentage = round(($largestExpenseCategory / $outcomeMonth) * 100);
+            } else {
+                $expensePercentage = 0;
+            }
+        } else {
+            $incomePercentage = 0;
+            $expensePercentage = 0;
+        }
 
-        $latestTransaction = Transaction::orderBy('dateTime', 'desc')->take(4)->get();
+
+        $latestTransaction = Transaction::whereNotNull('dateTime')->orderBy('dateTime', 'desc')->take(4)->get();
         foreach ($latestTransaction as $lt) {
             $lt->date = Carbon::parse($lt->dateTime)->format('d M Y');
             $lt->time  = Carbon::parse($lt->dateTime)->format('h:i A');

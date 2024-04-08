@@ -37,6 +37,9 @@
                         </td>
                     </tr>
                 @empty
+                <tr>
+                    <td colspan="9" align="center">Belum Terjadi Transaksi</td>
+                </tr>
                 @endforelse
             </tbody>
         </table>

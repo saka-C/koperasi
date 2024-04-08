@@ -10,7 +10,13 @@ function selectRadioButton(id, describeElement) {
         radioButton.click();
         describeElement.classList.add('checked');
 
+        let walletName = describeElement.children[1].children[0].innerText;
+        let balance = describeElement.children[1].children[1].innerText;
+
+        const btnPopup = document.getElementById('popupBtn');
+        btnPopup.innerText = `${walletName} | ${balance}`
     }
+
 }
 
 const btnPopup = document.getElementById('popupBtn');
@@ -26,6 +32,7 @@ btnPopup.addEventListener("click", (e) => {
 function closeBtn(){
     walletPopup.classList.remove("show");
 }
+
 
 function goBack() {
     window.history.back(); // Fungsi untuk kembali ke halaman sebelumnya

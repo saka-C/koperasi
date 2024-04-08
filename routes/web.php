@@ -29,10 +29,7 @@ Route::controller(TransactionController::class)->prefix('transaction')->group(fu
     Route::post('/store', 'store');
 });
 
-// Route::get('/transaction/index', function () {
-//     return view('transaction.index');
-// });
-// Route::get('/transaction/create', function () {
-//     return view('transaction.create');
-// });
+Route::get('/transaction/view', function () {
+    return view('transaction.view');
+});
 

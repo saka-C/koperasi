@@ -1,5 +1,9 @@
 @extends('layout.container')
 
+@section('top-wrapper')
+    @include('partials.backbutton')
+@endsection
+
 @section('content')
     <div class="form-container">
         <form action="/transaction/store" method="post">
@@ -33,15 +37,16 @@
                                 </div>
                                 <div class="wallet-option">
                                     <span>{{ $wal->wallet }}</span>
+                                    <span>{{ $wal->amount }}</span>
                                 </div>
                                 <input type="radio" name="wallet_id" hidden id="wallet_id{{ $wal->id }}"
                                     value="{{ $wal->id }}" required>
                             </div>
                         @empty
-                            <div class="radio-wallet-option" onclick="selectRadioButton('wallet_id', this)">
-                                <div class="wallet-option">
-                                    <span>Wallet Belum Tersedia!</span>
-                                </div>
+                            <div class="empty-value">
+                                <span class="bold">Oppss!!</span>
+                                <img src="{{asset('/img/novalue.png')}}" alt="no value">
+                                <span>Sepertinya kamu belum punya data ini <a href="/wallet/index">buat disini</a></span>
                             </div>
                         @endforelse
 

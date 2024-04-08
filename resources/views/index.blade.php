@@ -103,7 +103,7 @@
                         <td>Rp.{{ number_format($lt->amount, 0, ',', '.') }}</td>
                         <td>{{ $lt->wallet->wallet }}</td>
                         <td class="date-column">{{ $lt->date }}<span>{{ $lt->time }}</span></td>
-                        <td><a href="#">Lihat</a></td>
+                        <td><a href="/transaction/view">Lihat</a></td>
                         @if ($lt->category->type == 'Pengeluaran')
                             <td class="indicator out">
                                 <p>.</p>
@@ -144,7 +144,7 @@
         </div>
 
         <div class="bar-section">
-            <div class="info"><span>Entertain</span><span>80%</span></div>
+            <div class="info"><span>Entertain</span><span>60%</span></div>
             <div class="bar">
                 <div class="level-bar" style="background-color: #FCAC12; width: 60%;">
                     <p>.</p>

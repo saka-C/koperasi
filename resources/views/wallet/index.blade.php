@@ -13,7 +13,7 @@
                 <tr>
                     <td>Nama dompet</td>
                     <td>Jenis</td>
-                    <td>Saldo awal</td>
+                    <td>Saldo</td>
                     <td>Dibuat</td>
                     <td>Action</td>
                 </tr>
@@ -61,9 +61,6 @@
                         <input type="radio" name="type" hidden id="nontunai_id" value="Non Tunai">
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <input type="number" placeholder="Saldo awal anda">
             </div>
             <div class="form-group">
                 <button type="submit">Tambahkan</button>

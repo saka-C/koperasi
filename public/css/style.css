@@ -364,7 +364,8 @@ td a{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 12px;
+    width: 115px;
+    height: 100px;
     border-radius: 100px;
 }
 .section-bottom-month{
@@ -462,8 +463,9 @@ td a{
     display: flex;
     flex-direction: column;
 }
-label{
+.container label{
     font-size: 13px;
+    color: var(--primary-color-dark);
     font-weight: 500;
 }
 textarea,input,select{
@@ -472,6 +474,9 @@ textarea,input,select{
     border: 2px solid var(--stroke-color);
     outline: none;
     transition: var(--tran-01);
+    background-color: var(--primary-color-light);
+    font-family: 'Poppins', sans-serif;
+
 }
 input:focus,textarea:focus,select:focus{
     border: 2px solid var(--web-blue);
@@ -490,9 +495,9 @@ textarea:focus{
 }
 .form-group button{
     background-color: var(--primary-color);
-    border: 2px solid var(--primary-color-dark);
+    border: 2px solid var(--text-color);
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
 }
@@ -619,6 +624,7 @@ fieldset input:focus{
     border: 2px solid var(--stroke-color);
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 .radio-wallet-option .wallet-type{
     background-color: var(--primary-color-dark);
@@ -643,6 +649,7 @@ fieldset input:focus{
     border-radius: 5px;
     color: var(--primary-color-light);
     font-weight: 500;
+    cursor: pointer;
 }
 .wrapper .form-container{
     border: none;
@@ -667,9 +674,6 @@ fieldset input:focus{
     color: var(--primary-color-light);
     border-radius: 5px;
 }
-.wrapper .form-container label{
-    color: var(--primary-color-dark);
-}
 .wrapper .form-container .bold{
     font-size: 20px;
     margin: 10px 0px;
@@ -680,8 +684,60 @@ fieldset input:focus{
     gap: 10px;
 }
 .top-wrapper{
-    padding:10px 20px;
+    padding: 10px 20px;
     border-bottom: 1px solid var(--stroke-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-color);
+}
+.top-wrapper a{
+    color: var(--primary-color-dark);
+    font-size: 20px;
+}
+.content-wrapper{
+    background-color: var(--primary-color);
+    padding: 20px;
+}
+.content-wrapper .content-info{
+    color: var(--text-color-darken);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.content-wrapper .times{
+    font-size: 13px;
+    font-weight: 500;
+}
+.mid-content{
+    padding: 20px;
+    margin-top: -35px;
+}
+.frame{
+    color: var(--text-color);
+    background-color: var(--primary-color-light);
+    border: 1px solid var(--bg-grey);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around; 
+    text-align: center;
+}
+.frame-section{
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    padding: 10px;
+}
+.frame-section span{
+    font-size: 15px;
+}
+.divider{
+    margin-top: 25px;
+    border-top: 2px dashed var(--stroke-color);
+}
+.divider span{
+    opacity: 0;
 }
 .button-back {
     margin: 0;
@@ -696,4 +752,43 @@ fieldset input:focus{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.action-edit{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.action-edit a{
+    text-align: center;
+    width: 100%;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+
+
+/* error */
+.empty-value{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+}
+.empty-value img{
+    width: 300px;
+}
+.wrapper .form-container .empty-value .bold{
+    font-size: 30px;
+    font-weight: 700;
+}
+.wrapper .form-container .empty-value span{
+    font-size: 14px;
+    font-weight: 500;
+}
+.wrapper .form-container .empty-value a{
+    color: var(--web-blue);
 }

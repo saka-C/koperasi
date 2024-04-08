@@ -72,6 +72,10 @@ a{
     border-bottom: 1px solid var(--stroke-color);
     box-shadow: 0px 0px 15px 0px var(--shadow-color);
 }
+button{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
 /* ============== */
 .container{
     height: 100%;
@@ -758,7 +762,7 @@ fieldset input:focus{
     justify-content: center;
     padding: 20px;
 }
-.action-edit a{
+.action-edit button{
     text-align: center;
     width: 100%;
     background-color: var(--primary-color);
@@ -766,6 +770,7 @@ fieldset input:focus{
     padding: 10px;
     font-weight: 600;
     color: var(--text-color);
+    border: none;
 }
 
 
@@ -791,4 +796,81 @@ fieldset input:focus{
 }
 .wrapper .form-container .empty-value a{
     color: var(--web-blue);
+}
+
+/* The Modal (background) */
+.modal{
+    display: none;
+}
+.modal.show {
+    display: flex;
+    justify-content: center; 
+    align-items: start;
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden;
+    background-color: var(--shadow-popup); 
+}
+
+.modal-content {
+    background-color: var(--primary-color-light);
+    margin-top: 0; 
+    margin-left: 10%;
+    margin-right: 10%; 
+    padding: 20px;
+    border: 1px solid var(--stroke-color);
+    width: 40%; 
+    animation-name: slideIn;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards; 
+    top: 0; 
+    transform: translateY(0%); 
+    border-radius: 0 0 5px 5px;
+}
+.modal-content .form-group{
+    margin-bottom: 7px;
+}
+
+@keyframes slideIn {
+    from {
+        margin-top: -100%;
+    }
+    to {
+        margin-top: 0;
+    }
+}
+
+
+@keyframes slideOut {
+    from {
+        margin-top: 0; 
+    }
+    to {
+        margin-top: -100%; 
+    }
+}
+.botom-modal{
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    margin-top: 20px;
+}
+.botom-modal button{
+    padding: 7px 10px;
+    border: none;
+    border-radius: 5px;
+}
+.close-modal {
+    color: var(--primary-color-dark);
+    background-color: var(--stroke-color);
+    font-weight: 600;
+}
+.botom-modal button[type="submit"]{
+    background-color: var(--web-blue);
+    font-weight: 600;
+    color: var(--body-color);
 }

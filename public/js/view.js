@@ -35,5 +35,7 @@ function closeBtn(){
 
 
 function goBack() {
-    window.history.back(); // Fungsi untuk kembali ke halaman sebelumnya
+    window.history.back();
 }
+
+

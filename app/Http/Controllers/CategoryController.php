@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -27,6 +28,22 @@ class CategoryController extends Controller
         } else {
             Category::create($categoryData);
             return back()->with('success', 'Yay! Kategori Berhasil di Tambahkan');
+        }
+    }
+
+    function show(Category $category){
+        return view('category.view',[
+            'category' => $category
+        ]);
+    }
+
+    function destroy(Category $category){
+        $cek_transaction = Transaction::where('category_id', $category->id)->first();
+        if ($cek_transaction) {
+            return back()->with('error', 'Opps! Kategori Exists di Menu Transaksi');
+        } else {
+            $category->delete();
+            return redirect('/category/index')->with('success','Yay! Kategori Berhasil di Hapus');
         }
     }
 }

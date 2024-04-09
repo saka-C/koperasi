@@ -25,7 +25,7 @@
                         <td>{{ $item->desc }}</td>
                         <td>{{ $item->type }}</td>
                         <td class="date-column">{{ $item->created_at->format('d M Y') }}<span>{{ $item->created_at->format('h:i A') }}</span></td>
-                        <td><a href="#">Lihat</a></td>
+                        <td><a href="/category/show/{{ $item->id }}">Lihat</a></td>
                     </tr>
                 @empty
                     <tr>

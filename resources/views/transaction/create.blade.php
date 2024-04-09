@@ -37,7 +37,13 @@
                                 </div>
                                 <div class="wallet-option">
                                     <span>{{ $wal->wallet }}</span>
-                                    <span>{{ $wal->amount }}</span>
+                                    <span>
+                                        @if (isset($walletBalances[$wal->id]))
+                                            {{ $walletBalances[$wal->id] }}
+                                        @else
+                                            0
+                                        @endif
+                                    </span>
                                 </div>
                                 <input type="radio" name="wallet_id" hidden id="wallet_id{{ $wal->id }}"
                                     value="{{ $wal->id }}" required>

@@ -117,9 +117,6 @@
                 @empty
                     <tr>
                         <td colspan="9" align="center">Belum Terjadi Transaksi</td>
-                        <td class="indicator out">
-                            <p>.</p>
-                        </td>
                     </tr>
                 @endforelse
             </tbody>

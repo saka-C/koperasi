@@ -16,12 +16,10 @@ function selectRadioButton(id, describeElement) {
         const btnPopup = document.getElementById('popupBtn');
         btnPopup.innerText = `${walletName} | ${balance}`
     }
-
 }
 
 const btnPopup = document.getElementById('popupBtn');
 const walletPopup = document.querySelector('.wallet-popup');
-
 
 
 btnPopup.addEventListener("click", (e) => {

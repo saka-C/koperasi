@@ -23,7 +23,13 @@
                     <tr>
                         <td>{{ $item->wallet }}</td>
                         <td>{{ $item->type }}</td>
-                        <td>-</td>
+                        <td>Rp.
+                        @if (isset($walletBalances[$item->id]))
+                            {{ $walletBalances[$item->id] }}
+                        @else
+                            0
+                        @endif
+                        </td>
                         <td class="date-column">
                             {{ $item->created_at->format('d M Y') }}<span>{{ $item->created_at->format('h:i A') }}</span>
                         </td>

@@ -27,7 +27,7 @@
                         <td>{{ $item->wallet->wallet }}</td>
                         <td class="date-column">
                             {{ $item->date }}<span>{{ $item->time }}</span></td>
-                        <td><a href="#">Lihat</a></td>
+                        <td><a href="/transaction/show/{{ $item->id }}">Lihat</a></td>
                         @if ($item->category->type == 'Pengeluaran')
                             <td class="indicator out">
                             @else

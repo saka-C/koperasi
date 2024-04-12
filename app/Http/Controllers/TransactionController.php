@@ -78,9 +78,12 @@ class TransactionController extends Controller
             'note' => ['required']
         ]);
 
-        dd($transactionData);
-
         $transaction->update($transactionData);
         return redirect("/transaction/show/$transaction->id")->with('success', 'Yay! Transaksi Berhasil di Ubah');
+    }
+
+    function destroy(Transaction $transaction){
+        $transaction->delete();
+        return redirect('/transaction/index')->with('success','Yay! Transaksi Berhasil di Hapus');
     }
 }

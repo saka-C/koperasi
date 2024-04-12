@@ -15,6 +15,7 @@ Route::controller(CategoryController::class)->prefix('category')->group(function
     Route::get('/index', 'index');
     Route::post('/store', 'store');
     Route::get('/show/{category}', 'show');
+    Route::post('/update/{category}', 'update');
     Route::get('/destroy/{category}', 'destroy');
 });
 
@@ -22,6 +23,9 @@ Route::controller(CategoryController::class)->prefix('category')->group(function
 Route::controller(WalletController::class)->prefix('wallet')->group(function (){
     Route::get('/index', 'index');
     Route::post('/store', 'store');
+    Route::get('/show/{wallet}', 'show');
+    Route::post('/update/{wallet}', 'update');
+    Route::get('/destroy/{wallet}', 'destroy');
 });
 
 //Route Transaction
@@ -31,9 +35,5 @@ Route::controller(TransactionController::class)->prefix('transaction')->group(fu
     Route::post('/store', 'store');
     Route::get('/show/{transaction}', 'show');
     Route::post('/update/{transaction}', 'update');
+    Route::get('/destroy/{transaction}','destroy');
 });
-
-Route::get('/transaction/view', function () {
-    return view('transaction.view');
-});
-

@@ -8,13 +8,15 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    function index(){
-        return view('category.index',[
+    function index()
+    {
+        return view('category.index', [
             'category' => Category::latest()->get()
         ]);
     }
 
-    function store(Request $request){
+    function store(Request $request)
+    {
         $categoryData = $request->validate([
             'category' => ['required'],
             'type' => ['required'],
@@ -31,19 +33,39 @@ class CategoryController extends Controller
         }
     }
 
-    function show(Category $category){
-        return view('category.view',[
+    function show(Category $category)
+    {
+        return view('category.view', [
             'category' => $category
         ]);
     }
 
-    function destroy(Category $category){
+    function update(Request $request, Category $category)
+    {
+        $categoryData = $request->validate([
+            'category' => ['required'],
+            'type' => ['required'],
+            'desc' => ['required'],
+        ]);
+
+        if ($request->category != $category->category || $request->type != $category->type || $request->desc != $category->desc) {
+            $cek_category = Category::firstOrNew($categoryData);
+            if ($cek_category->exists) {
+                return back()->with('error', 'Opps! Kategori Telah Tersedia');
+            }
+        }
+        $category->update($categoryData);
+        return redirect("/category/show/$category->id")->with('success', 'Yay! Kategori Berhasil di Ubah');
+    }
+
+    function destroy(Category $category)
+    {
         $cek_transaction = Transaction::where('category_id', $category->id)->first();
         if ($cek_transaction) {
-            return back()->with('error', 'Opps! Kategori Exists di Menu Transaksi');
+            return back()->with('error', 'Opps! Kategori Exist di Menu Transaksi');
         } else {
             $category->delete();
-            return redirect('/category/index')->with('success','Yay! Kategori Berhasil di Hapus');
+            return redirect('/category/index')->with('success', 'Yay! Kategori Berhasil di Hapus');
         }
     }
 }

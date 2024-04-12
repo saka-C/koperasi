@@ -1,10 +1,13 @@
 @extends('layout.container')
 
 @section('top-wrapper')
-    @include('partials.backbutton')
+    <a href="/transaction/index">
+        @include('partials.backbutton')
+
+    </a>
     @include('partials.detailtxt')
     <div class="action">
-        <a href="#"><i class='bx bxs-trash'></i></a>
+        <a href="/transaction/destroy/{{ $transaction->id }}"><i class='bx bxs-trash'></i></a>
     </div>
 @endsection
 
@@ -49,7 +52,7 @@
                                         @endif
                                     </span>
                                 </div>
-                                <input type="radio" name="" hidden id="wallet_id{{ $wal->id }}"
+                                <input type="radio" name="wallet_id" hidden id="wallet_id{{ $wal->id }}"
                                     value="{{ $wal->id }}">
                             </div>
                         @empty
@@ -91,8 +94,8 @@
                     <textarea name="note" id="" cols="30" rows="10" placeholder="Catatan" required>{{ $transaction->note }}</textarea>
                 </div>
                 <div class="botom-modal">
-                    <button class="close-modal">Tutup</button>
-                    <button type="submit">Simpan</button>
+                    <button class="close-modal" type="button">Tutup</a>
+                        <button type="submit">Simpan</button>
                 </div>
             </form>
         </div>

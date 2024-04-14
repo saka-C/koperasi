@@ -1,6 +1,7 @@
 @extends('layout.main')
 
 @section('main-content')
+    
     <h3>Dompet</h3>
 
     <div class="table-data">
@@ -33,7 +34,14 @@
                         <td class="date-column">
                             {{ $item->created_at->format('d M Y') }}<span>{{ $item->created_at->format('h:i A') }}</span>
                         </td>
-                        <td><a href="/wallet/show/{{ $item->id }}">Lihat</a></td>
+                        <td class="bubble-action-column">
+                            <button class="action-button"><i class='bx bxs-cog'></i></button>
+                            <div class="bubble-action">
+                                <a href="/wallet/show/{{ $item->id }}">lihat</a>
+                                <br>
+                                <a href="/wallet/destroy/{{ $item->id }}" class="out">Hapus</a>
+                            </div>
+                        </td>
                     </tr>
                 @empty
                     <tr>
@@ -43,6 +51,7 @@
             </tbody>
         </table>
     </div>
+    <script src="{{asset('/js/actionBtn.js')}}"></script>
 @endsection
 
 @section('right-content')
@@ -51,7 +60,7 @@
         <form action="/wallet/store" method="post">
             @csrf
             <div class="form-group">
-                <input type="text" placeholder="Nama kategori baru" name="wallet" required>
+                <input type="text" placeholder="Nama dompet baru" name="wallet" required>
             </div>
             <div class="form-group">
                 <div class="cover-radio-button">
@@ -74,3 +83,5 @@
         </form>
     </div>
 @endsection
+
+

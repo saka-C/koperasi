@@ -64,7 +64,7 @@ class WalletController extends Controller
 
     function destroy(Wallet $wallet){
         $cek_transaksi = Transaction::where('wallet_id', $wallet->id)->first();
-        if ($cek_transaksi) {
+        if (Transaction::where('wallet_id', $wallet->id)->exists()) {
             return back()->with('error', 'Opps! Dompet Exist di Menu Transaksi');
         } else {
             $wallet->delete();

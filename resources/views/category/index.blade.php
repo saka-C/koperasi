@@ -25,7 +25,14 @@
                         <td>{{ $item->desc }}</td>
                         <td>{{ $item->type }}</td>
                         <td class="date-column">{{ $item->created_at->format('d M Y') }}<span>{{ $item->created_at->format('h:i A') }}</span></td>
-                        <td><a href="/category/show/{{ $item->id }}">Lihat</a></td>
+                        <td class="bubble-action-column">
+                            <button class="action-button"><i class='bx bxs-cog'></i></button>
+                            <div class="bubble-action">
+                                <a href="/category/show/{{ $item->id }}">lihat</a>
+                                <br>
+                                <a href="#" class="out">Hapus</a>
+                            </div>
+                        </td>
                     </tr>
                 @empty
                     <tr>
@@ -35,6 +42,7 @@
             </tbody>
         </table>
     </div>
+    <script src="{{asset('/js/actionBtn.js')}}"></script>
 @endsection
 
 @section('right-content')

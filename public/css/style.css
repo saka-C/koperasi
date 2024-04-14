@@ -77,6 +77,24 @@ button{
     font-weight: 700;
 }
 /* ============== */
+.container-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.login-card{
+    background-color: var(--primary-color-light);
+    border: 1px solid var(--stroke-color);
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+}
+.login-card form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 .container{
     height: 100%;
     display: flex;
@@ -319,12 +337,18 @@ tr .indicator p{
 td a{
     background-color: var(--primary-color);
     padding: 8px 15px;
-    border-radius: 10px;
+    border-radius: 5px;
     color: var(--text-color);
     font-size: 13px;
     font-weight: 500;
+    border: none;
 }
-
+td button{
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--bg-dark);
+}
 
 .month-transaction{
     background-color: var(--body-color);
@@ -474,7 +498,7 @@ td a{
 }
 textarea,input,select{
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 2px solid var(--stroke-color);
     outline: none;
     transition: var(--tran-01);
@@ -506,7 +530,7 @@ textarea:focus{
     font-family: 'Poppins', sans-serif;
 }
 fieldset{
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 0;
     display: flex;
     border: 2px solid var(--stroke-color);
@@ -515,6 +539,11 @@ fieldset{
 }
 .form-group:focus-within fieldset {
     border-color: var(--web-blue);
+}
+.login-card form fieldset input{
+    border: none;
+    padding: 10px;
+    padding-top: 0px;
 }
 fieldset input{
     border: none;
@@ -538,20 +567,27 @@ fieldset input:focus{
     background-color: var(--web-blue);
     font-weight: 600;
     color: var(--primary-color-light);
-    border-radius: 10px;
+    border-radius: 5px;
     align-items: center;
     display: flex;
     gap: 5px;
     padding: 10px 15px;
     font-size: 13px;
 }
+
 .radio-button i{
     font-size: 20px;
+}
+.modal-content .radio-button label{
+    color: var(--primary-color-light);
+}
+.modal-content .radio-button.checked label{
+    color: var(--primary-color-dark);
 }
 .cover-radio-button {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .cover-radio-button .checked {
@@ -834,7 +870,9 @@ fieldset input:focus{
 .modal-content .form-group{
     margin-bottom: 7px;
 }
-
+.modal-content .cover-radio-button{
+    justify-content: start;
+}
 @keyframes slideIn {
     from {
         margin-top: -100%;
@@ -873,4 +911,40 @@ fieldset input:focus{
     background-color: var(--web-blue);
     font-weight: 600;
     color: var(--body-color);
+}
+.bubble-action-column{
+
+    
+}
+.bubble-action {
+    display: none;
+    background-color: var(--primary-color-light);
+    padding: 10px;
+    border: 1px solid var(--stroke-color);
+    border-radius: 5px;
+    margin-top: 10px;
+    position: absolute;
+    margin-top: -25px;
+    margin-left: 30px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.bubble-action a {
+    background-color: var(--primary-color-light);
+    color: var(--text-color);
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+    border: 1px solid var(--stroke-color);
+    border-radius: 4px;
+}
+.bubble-action a.out{
+    background-color: var(--web-red);
+    color: var(--primary-color-light);
+}
+.bubble-action a:hover {
+    background-color: var(--stroke-color);
+}
+.bubble-action a:hover.out {
+    background-color: #E72929;
 }

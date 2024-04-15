@@ -7,11 +7,11 @@
         <img src="{{asset('/img/logo.png')}}" alt="">
     </div>
     <nav>
-        <a href="/"><i class='bx bx-tachometer'></i><span>Dashboard</span></a>
+        <a href="/home"><i class='bx bx-tachometer'></i><span>Dashboard</span></a>
         <a href="/category/index"><i class='bx bx-category'></i><span>Kategori</span></a>
         <a href="/wallet/index"><i class="ph-bold ph-wallet"></i><span>Dompet</span></a>
         <a href="/transaction/index"><i class="ph-bold ph-receipt"></i><span>Transaksi</span></a>
-        <a href="#"><i class='bx bx-log-out' ></i><span>Logout</span></a>
+        <a href="/logout"><i class='bx bx-log-out' ></i><span>Logout</span></a>
     </nav>
 </div>
 

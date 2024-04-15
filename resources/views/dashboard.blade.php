@@ -39,7 +39,7 @@
     <div class="month-transaction">
         <div class="section-top-month">
             <span class="bold">Aktifitas bulan {{ $month }}</span>
-            <a href="#">Detail Aktifitas<i class='bx bx-chevron-right'></i></a>
+            {{-- <a href="#">Detail Aktifitas<i class='bx bx-chevron-right'></i></a> --}}
         </div>
         <div class="section-mid-month">
             <div class="month-bar">
@@ -62,7 +62,8 @@
                     <span class="info">Pengeluaran terbesar mu adalah kategori <span
                             class="bold">{{ $largestExpenseCategoryName }}</span></span>
                 @else
-                    <span class="info">Sebagian pemasukan terbesar mu adalah <span class="bold">Belum Tersedia</span></span>
+                    <span class="info">Sebagian pemasukan terbesar mu adalah <span class="bold">Belum
+                            Tersedia</span></span>
                 @endif
             </div>
         </div>
@@ -81,7 +82,7 @@
     <div class="table-data">
         <div class="top-table">
             <span class="bold">Terbaru</span>
-            <a href="#">Lihat Semua <i class='bx bx-chevron-right'></i></a>
+            <a href="/transaction/index">Lihat Semua <i class='bx bx-chevron-right'></i></a>
         </div>
 
         <table>
@@ -103,7 +104,7 @@
                         <td>Rp.{{ number_format($lt->amount, 0, ',', '.') }}</td>
                         <td>{{ $lt->wallet->wallet }}</td>
                         <td class="date-column">{{ $lt->date }}<span>{{ $lt->time }}</span></td>
-                        <td><a href="/transaction/view">Lihat</a></td>
+                        <td><a href="/transaction/show/{{ $lt->id }}">Lihat</a></td>
                         @if ($lt->category->type == 'Pengeluaran')
                             <td class="indicator out">
                                 <p>.</p>

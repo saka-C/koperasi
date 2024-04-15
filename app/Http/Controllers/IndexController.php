@@ -82,7 +82,7 @@ class IndexController extends Controller
             $lt->time  = Carbon::parse($lt->dateTime)->format('h:i A');
         }
 
-        return view('index', [
+        return view('dashboard', [
             'month' => date('M'),
             'totalAmount' => $formatTotalAmount,
             'incomeThisMonth' => $formatIncomeMonth,

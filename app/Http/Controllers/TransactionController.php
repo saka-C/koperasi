@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TransactionsExport;
 use App\Helpers\WalletHelper;
 use App\Models\Category;
 use App\Models\Transaction;
 use App\Models\Wallet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TransactionController extends Controller
 {
     function index()
     {
         $transactions = Transaction::orderBy('dateTime', 'desc')->get();
+
+        $formDate = null;
+        $toDate = null;
 
         foreach ($transactions as $transaction) {
             $transaction->date = Carbon::parse($transaction->dateTime)->format('d M Y');
@@ -24,8 +30,48 @@ class TransactionController extends Controller
             $transaction->amount = number_format($transaction->amount, 0, ',', '.');
         }
 
-        return view('transaction.index', compact('transactions'));
+        Session::put('filtered_data',$transactions);
+
+        return view('transaction.index', compact('transactions','formDate','toDate'));
     }
+
+    function search(Request $request){
+        $formDate = $request->formDate;
+        $toDate = $request->toDate;
+
+        if ($formDate && $toDate) {
+            // Jika kedua tanggal tersedia
+            $transactions = Transaction::whereBetween('dateTime', [$formDate, $toDate])
+                                        ->orderBy('dateTime', 'desc')
+                                        ->get();
+        } elseif ($formDate) {
+            // Jika hanya tanggal awal yang tersedia
+            $transactions = Transaction::where('dateTime', '>=', $formDate)
+                                        ->orderBy('dateTime', 'desc')
+                                        ->get();
+        } elseif ($toDate) {
+            // Jika hanya tanggal akhir yang tersedia
+            $transactions = Transaction::where('dateTime', '<=', $toDate)
+                                        ->orderBy('dateTime', 'desc')
+                                        ->get();
+        } else {
+            // Jika kedua tanggal tidak tersedia
+            $transactions = Transaction::orderBy('dateTime', 'desc')->get();
+        }
+
+
+        foreach ($transactions as $transaction) {
+            $transaction->date = Carbon::parse($transaction->dateTime)->format('d M Y');
+            $transaction->time  = Carbon::parse($transaction->dateTime)->format('h:i A');
+        }
+
+        foreach ($transactions as $transaction) {
+            $transaction->amount = number_format($transaction->amount, 0, ',', '.');
+        }
+
+        Session::put('filtered_data', $transactions);
+        return view('transaction.index', compact('transactions','formDate','toDate'));
+    }   
 
     function create()
     {
@@ -49,7 +95,7 @@ class TransactionController extends Controller
         ]);
 
         Transaction::create($transactionData);
-        return redirect('/')->with('success', 'Yay! Transaksi Berhasil di Tambahkan');
+        return redirect('/home')->with('success', 'Yay! Transaksi Berhasil di Tambahkan');
     }
 
     function show(Transaction $transaction)
@@ -85,5 +131,14 @@ class TransactionController extends Controller
     function destroy(Transaction $transaction){
         $transaction->delete();
         return redirect('/transaction/index')->with('success','Yay! Transaksi Berhasil di Hapus');
+    }
+
+    function exportToExcel(){
+        $filteredData = Session::get('filtered_data');
+        if ($filteredData->isNotEmpty()) {
+            return Excel::download(new TransactionsExport($filteredData), 'transaction.xlsx');
+        } else {
+            return redirect('/transaction/index')->with('error', 'Belum ada data');
+        }
     }
 }

@@ -7,6 +7,7 @@
             <span class="bold">Data Transaksi</span>
         </div>
 
+        
         <table>
             <thead>
                 <tr>
@@ -49,18 +50,19 @@
 @section('right-content')
     <div class="form-container">
         <h3>Mutasi transaksi</h3>
-        <form action="">
+        <form action="/transaction/search" method="post">
+            @csrf
             <div class="form-group">
                 <fieldset>
                     <legend>Mulai</legend>
-                    <input type="date" name="" id="">
+                    <input type="date" name="formDate" id="" >
                 </fieldset>
             </div>
 
             <div class="form-group">
                 <fieldset>
                     <legend>Sampai</legend>
-                    <input type="date" name="" id="">
+                    <input type="date" name="toDate" id="" >
                 </fieldset>
             </div>
 
@@ -70,7 +72,9 @@
         </form>
     </div>
 
+    @if (isset($transactions))
     <div class="bottom-right">
-        <a href="#"><i class='bx bx-cloud-download'></i>Unduh catatan mutasi</a>
+        <a href="{{ route('transaction.export', ['formDate' => $formDate, 'toDate' => $toDate]) }}"><i class='bx bx-cloud-download'></i>Unduh catatan mutasi</a>
     </div>
+    @endif
 @endsection

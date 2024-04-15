@@ -30,7 +30,7 @@
                             <div class="bubble-action">
                                 <a href="/category/show/{{ $item->id }}">lihat</a>
                                 <br>
-                                <a href="#" class="out">Hapus</a>
+                                <a href="/category/destroy/{{ $item->id }}" class="out">Hapus</a>
                             </div>
                         </td>
                     </tr>

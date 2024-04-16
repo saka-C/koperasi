@@ -10,4 +10,9 @@ class Category extends Model
     use HasFactory;
     protected $table = 'category';
     protected $guarded = ['id'];
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

@@ -64,7 +64,7 @@ class IndexController extends Controller
             } else {
                 $incomePercentage = 0;
             }
-            
+
             if ($outcomeMonth != 0) {
                 $expensePercentage = round(($largestExpenseCategory / $outcomeMonth) * 100);
             } else {
@@ -75,11 +75,32 @@ class IndexController extends Controller
             $expensePercentage = 0;
         }
 
-
         $latestTransaction = Transaction::whereNotNull('dateTime')->orderBy('dateTime', 'desc')->take(4)->get();
         foreach ($latestTransaction as $lt) {
             $lt->date = Carbon::parse($lt->dateTime)->format('d M Y');
             $lt->time  = Carbon::parse($lt->dateTime)->format('h:i A');
+        }
+
+        // Dapatkan nama-nama kategori
+        // Dapatkan nama-nama kategori
+        $categoryNames = Category::pluck('category', 'id');
+
+        // Persentase Keterlibatan Setiap Kategori
+        $categoryTotals = Transaction::select('category_id', DB::raw('SUM(amount) as total_amount'))
+            ->groupBy('category_id')
+            ->get();
+
+        $totalTransaction = $categoryTotals->sum('total_amount');
+
+        $percentagePerCategory = [];
+        foreach ($categoryTotals as $categoryTotal) {
+            $percentage = ($categoryTotal->total_amount / $totalTransaction) * 100;
+            $color = $this->generateRandomColor();
+
+            $percentagePerCategory[$categoryTotal->category_id] = [
+                'percentage' => round($percentage),
+                'color' => $color
+            ];
         }
 
         return view('dashboard', [
@@ -94,6 +115,13 @@ class IndexController extends Controller
             'incomePercentage' => $incomePercentage,
             'expensePercentage' => $expensePercentage,
             'latestTransaction' => $latestTransaction,
+            'categoryNames' => $categoryNames,
+            'percentagePerCategory' => $percentagePerCategory,
         ]);
+    }
+
+    private function generateRandomColor()
+    {
+        return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
     }
 }

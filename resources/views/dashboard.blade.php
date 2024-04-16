@@ -132,22 +132,15 @@
 
     <div class="mid-section">
         <span class="bold">Statistik</span>
+        @foreach($percentagePerCategory as $categoryId => $percentageData)
         <div class="bar-section">
-            <div class="info"><span>Salary</span><span>80%</span></div>
+            <div class="info"><span>{{ $categoryNames[$categoryId] }}</span><span>{{ $percentageData['percentage'] }}%</span></div>
             <div class="bar">
-                <div class="level-bar" style="background-color: #C8EE43; width: 80%;">
+                <div class="level-bar" style="background-color: {{ $percentageData['color'] }}; width: {{ $percentageData['percentage'] }}%;">
                     <p>.</p>
                 </div>
             </div>
         </div>
-
-        <div class="bar-section">
-            <div class="info"><span>Entertain</span><span>60%</span></div>
-            <div class="bar">
-                <div class="level-bar" style="background-color: #FCAC12; width: 60%;">
-                    <p>.</p>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 @endsection

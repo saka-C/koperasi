@@ -11,9 +11,9 @@
         <table>
             <thead>
                 <tr>
+                    <td>Jenis</td>
                     <td>Nama Kategori</td>
                     <td>Keterangan</td>
-                    <td>Jenis</td>
                     <td>Dibuat</td>
                     <td>Action</td>
                 </tr>
@@ -21,9 +21,9 @@
             <tbody>
                 @forelse ($category as $item)
                     <tr>
+                        <td>{{ $item->type }}</td>
                         <td>{{ $item->category }}</td>
                         <td>{{ $item->desc }}</td>
-                        <td>{{ $item->type }}</td>
                         <td class="date-column">{{ $item->created_at->format('d M Y') }}<span>{{ $item->created_at->format('h:i A') }}</span></td>
                         <td class="bubble-action-column">
                             <button class="action-button"><i class='bx bxs-cog'></i></button>

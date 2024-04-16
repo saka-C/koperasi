@@ -67,8 +67,7 @@
                     <select name="category_id" id="">
                         <option value="" selected>Pilih Kategory</option>
                         @forelse ($category as $cat)
-                            <option value="{{ $cat->id }}">{{ $cat->category }} - {{ $cat->desc }} -
-                                {{ $cat->type }}</option>
+                            <option value="{{ $cat->id }}">{{ $cat->type }} - {{ $cat->category }} - {{ $cat->desc }}</option>
                         @empty
                             <option value="">Kategori Belum Tersedia!</option>
                         @endforelse

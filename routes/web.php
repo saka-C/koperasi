@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\ChartController;
 use App\Http\Middleware\Access;
 use Illuminate\Support\Facades\Route;
 
@@ -49,4 +50,8 @@ Route::middleware('Access:admin')->group(function(){
         Route::get('/destroy/{transaction}','destroy');
         Route::get('/export','exportToExcel')->name('transaction.export');
     });
+
+    Route::controller(ChartController::class)->prefix('chart')->group(function (){
+        Route::get('/index', 'index');
+    });    
 });

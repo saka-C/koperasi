@@ -3,9 +3,18 @@
 @section('main-content')
     <h3>Kategori</h3>
 
+    <div class="switch-mobile">
+        <button id="button-mobile"><i class='bx bxs-chevron-up'></i></button>
+    </div>
     <div class="table-data">
         <div class="top-table">
             <span class="bold">Data Kategori</span>
+            <div class="short-data">
+                <span class="bold">Short by:</span>
+                <select name="" id="">
+                    <option value="" disabled selected>type</option>
+                </select>
+            </div>
         </div>
 
         <table>
@@ -74,4 +83,5 @@
             </div>
         </form>
     </div>
+    <script src="{{asset('/js/mobileModal.js')}}"></script>
 @endsection

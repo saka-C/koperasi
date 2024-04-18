@@ -25,10 +25,14 @@
     --tran-04: all 0.4s ease;
     --tran-05: all 0.5s ease;
 }
-
-body{
+html {
+    scroll-behavior: smooth;
+}
+*{
     margin: 0;
     font-family: 'Poppins', sans-serif;
+}
+body{
     background: var(--body-color);
     height: 100vh;
     box-sizing: border-box;
@@ -53,28 +57,89 @@ a{
 .in{
     background-color: var(--web-green);
 }
+button{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
 
 .content{
-    margin-left: 85px;
     display: flex;
-    padding: 0;
+    flex: 1;
+    margin-left: 70px;
     justify-content: space-between;
 }
 .main-content{
     padding: 20px;
-    margin-top: -20px;
     width: 80%;
+    box-sizing: border-box;
 }
 .right-content{
     padding: 20px;
-    width: 20%;
     border-left: 1px solid var(--stroke-color);
     border-bottom: 1px solid var(--stroke-color);
     box-shadow: 0px 0px 15px 0px var(--shadow-color);
+    width: 20%;
+    box-sizing: border-box;
 }
-button{
-    font-family: 'Poppins', sans-serif;
+.switch-mobile{
+    display: none;
+    justify-content: end;
+    background-color: var(--body-color);
+    border-top: 1px solid var(--stroke-color);
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1;
+    box-shadow: 0px 0px 5px 0px var(--shadow-color);
+}
+.switch-mobile button{
+    background: none;
+    border: none;
+    color: var(--bg-dark);
     font-weight: 700;
+    font-size: 17px;
+}
+@media screen and (max-width: 900px){
+    .content{
+        flex-direction: column;
+    }
+    .main-content{
+        width: 100%;
+    }
+    .right-content{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 500px){
+    .content{
+        margin-left: 0px;
+    }
+    .main-content{
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .switch-mobile{
+        display: flex;
+    }
+    .bottom-mobile{
+        display: none;
+        transition: var(--tran-02);
+    }
+    .bottom-mobile.show{
+        display: block;
+        position: fixed;
+        transition: var(--tran-03);
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: var(--body-color);
+    }
+
+
 }
 /* ============== */
 .container-login{
@@ -106,6 +171,16 @@ button{
     border-left: 1px solid var(--stroke-color);
     border-right: 1px solid var(--stroke-color);
 }
+@media screen and (max-width: 900px){
+    .wrapper{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 500px){
+    .wrapper{
+        width: 100%;
+    }
+}
 .sidebar {
     width: 50px;
     background-color: var(--body-color);
@@ -117,6 +192,7 @@ button{
     border-right: 1px solid var(--stroke-color);
     transition: var(--tran-05);
 }
+
 .sidebar.active {
     width: 200px;
 }
@@ -203,13 +279,32 @@ nav{
     left: 150px;
 }
 
-
+@media screen and (max-width: 500px){
+    .sidebar {
+        left: -80px;
+    }
+    .sidebar.active {
+        left: 0px;
+    }
+    .hamburger{
+        color: var(--text-color-darken);
+        border-radius: 100px;
+        border: none;
+        position: relative;
+        padding: 5px 10px;
+        left: 80px;
+        font-size: 20px;
+        cursor: pointer;
+        background-color: var(--primary-color);
+        transition: var(--tran-05);
+    }
+}
 
 .top-section{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    grid-gap: 30px;
 }
 .card-total{
     padding: 10px;
@@ -217,7 +312,6 @@ nav{
     align-items: center;
     justify-content: center;
     gap: 25px;
-    width: 100%;
     background-color: var(--primary-color-light);
     border: 1px solid var(--stroke-color);
     border-radius: 10px;
@@ -268,7 +362,6 @@ nav{
     border-radius: 10px;
     overflow-y: auto; 
     overflow-x: auto;
-    margin-top: 30px;
 }
 .table-data::-webkit-scrollbar {
     width: 12px;
@@ -282,6 +375,10 @@ nav{
 .top-table{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+.top-table select{
+    padding: 5px;
 }
 .top-table a{
     display: flex;
@@ -384,6 +481,11 @@ td button{
     align-items: center;
     gap: 20px;
 }
+@media screen and (max-width: 700px){
+    .section-mid-month{
+        flex-direction: column;
+    }
+}
 .earn-bar,
 .spen-bar{
     font-size: 30px;
@@ -480,11 +582,13 @@ td button{
     border-bottom: 2px solid var(--stroke-color);
     padding-bottom: 20px;
 }
+
 .form-container form{
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 20px;
+    box-sizing: border-box;
 
 }
 .form-group {
@@ -534,6 +638,7 @@ fieldset{
     padding: 0;
     display: flex;
     border: 2px solid var(--stroke-color);
+    background-color: var(--primary-color-light);
     flex-direction: column;
     transition: var(--tran-01);
 }

@@ -12,7 +12,7 @@
                 <span class="bold">Transaksi Baru</span>
                 <div class="form-group">
                     <label for="transaction_name">Nama transaksi</label>
-                    <input type="text" name="transaction_name" required>
+                    <input type="text" name="transaction_name" required placeholder="name">
                 </div>
                 <div class="form-group">
                     <label for="amount">Jumlah</label>

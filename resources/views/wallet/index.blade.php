@@ -3,10 +3,18 @@
 @section('main-content')
     
     <h3>Dompet</h3>
-
+    <div class="switch-mobile">
+        <a href="#bottom-mobile">Tambah dompet baru</a>
+    </div>
     <div class="table-data">
         <div class="top-table">
             <span class="bold">Data Dompet</span>
+            <div class="short-data">
+                <span class="bold">Short by:</span>
+                <select name="" id="">
+                    <option value="" disabled selected>type</option>
+                </select>
+            </div>
         </div>
 
         <table>

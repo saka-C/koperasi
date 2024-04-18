@@ -5,6 +5,20 @@
     <div class="table-data">
         <div class="top-table">
             <span class="bold">Data Transaksi</span>
+            <div class="short-data">
+                <span class="bold">Short by:</span>
+                <select name="" id="">
+                    <option value="" disabled selected>type</option>
+                    <option value="">Pemasukan</option>
+                    <option value="">Pengeluaran</option>
+                </select>
+                <select name="" id="">
+                    <option value="" disabled selected>wallet</option>
+                </select>
+                <select name="" id="">
+                    <option value="" disabled selected>category</option>
+                </select>
+            </div>
         </div>
 
         

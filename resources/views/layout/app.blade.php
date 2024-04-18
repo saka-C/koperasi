@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <title>Koperasi SMKN 1 CIBINONG</title>
 </head>
 <body>

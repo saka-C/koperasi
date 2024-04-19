@@ -10,9 +10,29 @@ class CategoryController extends Controller
 {
     function index()
     {
+        $type = null;
         return view('category.index', [
-            'category' => Category::latest()->get()
+            'category' => Category::latest()->get(),
+            'type' => $type,
         ]);
+    }
+
+    function shortBy(Request $request){
+        $type = $request->type;
+
+        if ($type) {
+            $category = Category::where('type', $type)->latest()->get();
+            return view('category.index',[
+                'category' => $category,
+                'type' => $type
+            ]);
+        }else{
+            $category = Category::latest()->get();
+            return view('category.index',[
+                'category' => $category,
+                'type' => $type
+            ]);
+        }
     }
 
     function store(Request $request)

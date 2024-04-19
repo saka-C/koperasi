@@ -10,10 +10,17 @@
         <div class="top-table">
             <span class="bold">Data Kategori</span>
             <div class="short-data">
-                <span class="bold">Short by:</span>
-                <select name="" id="">
-                    <option value="" disabled selected>type</option>
-                </select>
+                <form action="/category/short" method="get">
+                    @csrf
+                    <span class="bold">Short by:</span>
+                    <select name="type" id="">
+                        <option value="" {{ $type == null ? 'selected' : '' }} disabled>Tipe</option>
+                        <option value="">Semua</option>
+                        <option value="Pemasukan" {{ $type == 'Pemasukan' ? 'selected' : '' }}>Pemasukan</option>
+                        <option value="Pengeluaran" {{ $type == 'Pengeluaran' ? 'selected' : '' }}>Pengeluaran</option>
+                    </select>
+                    <button type="submit"><i class='bx bx-search'></i></button>
+                </form>
             </div>
         </div>
 
@@ -33,7 +40,9 @@
                         <td>{{ $item->type }}</td>
                         <td>{{ $item->category }}</td>
                         <td>{{ $item->desc }}</td>
-                        <td class="date-column">{{ $item->created_at->format('d M Y') }}<span>{{ $item->created_at->format('h:i A') }}</span></td>
+                        <td class="date-column">
+                            {{ $item->created_at->format('d M Y') }}<span>{{ $item->created_at->format('h:i A') }}</span>
+                        </td>
                         <td class="bubble-action-column">
                             <button class="action-button"><i class='bx bxs-cog'></i></button>
                             <div class="bubble-action">
@@ -51,7 +60,7 @@
             </tbody>
         </table>
     </div>
-    <script src="{{asset('/js/actionBtn.js')}}"></script>
+    <script src="{{ asset('/js/actionBtn.js') }}"></script>
 @endsection
 
 @section('right-content')
@@ -83,5 +92,5 @@
             </div>
         </form>
     </div>
-    <script src="{{asset('/js/mobileModal.js')}}"></script>
+    <script src="{{ asset('/js/mobileModal.js') }}"></script>
 @endsection

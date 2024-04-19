@@ -6,22 +6,42 @@
         <div class="top-table">
             <span class="bold">Data Transaksi</span>
             <div class="short-data">
-                <span class="bold">Short by:</span>
-                <select name="" id="">
-                    <option value="" disabled selected>type</option>
-                    <option value="">Pemasukan</option>
-                    <option value="">Pengeluaran</option>
-                </select>
-                <select name="" id="">
-                    <option value="" disabled selected>wallet</option>
-                </select>
-                <select name="" id="">
-                    <option value="" disabled selected>category</option>
-                </select>
+                <form action="/transaction/search" method="post">
+                    @csrf
+                    <span class="bold">Short by:</span>
+                    <select name="month" id="">
+                        <option value="" disabled selected>Month</option>
+                        <option value="">Semua</option>
+                        @foreach ($month as $m)
+                            <option value="{{ $m }}" {{ $monthSearch == $m ? 'selected' : '' }}>{{ $m }}</option>
+                        @endforeach
+                    </select>
+                    <select name="type" id="">
+                        <option value="" disabled selected>Type</option>
+                        <option value="">Semua</option>
+                        <option value="Pemasukan" {{ $typeSearch == 'Pemasukan' ? 'selected' : '' }}>Pemasukan</option>
+                        <option value="Pengeluaran" {{ $typeSearch == 'Pengeluaran' ? 'selected' : '' }}>Pengeluaran</option>
+                    </select>
+                    <select name="wallet_id" id="">
+                        <option value="" disabled selected>Wallet</option>
+                        <option value="">Semua</option>
+                        @foreach ($wallet as $wal)
+                            <option value="{{ $wal->id }}" {{ $walletSearch == $wal->id ? 'selected' : '' }}>{{ $wal->wallet }}</option>
+                        @endforeach
+                    </select>
+                    <select name="category_id" id="">
+                        <option value="" disabled selected>Category</option>
+                        <option value="">Semua</option>
+                        @foreach ($category as $cat)
+                            <option value="{{ $cat->id }}" {{ $categorySearch == $cat->id ? 'selected' : '' }}>{{ $cat->category }}</option>
+                        @endforeach
+                    </select>
+                    <button type="submit"><i class='bx bx-search'></i></button>
+                </form>
             </div>
         </div>
 
-        
+
         <table>
             <thead>
                 <tr>
@@ -52,9 +72,9 @@
                         </td>
                     </tr>
                 @empty
-                <tr>
-                    <td colspan="9" align="center">Belum Terjadi Transaksi</td>
-                </tr>
+                    <tr>
+                        <td colspan="9" align="center">Belum Terjadi Transaksi</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
@@ -69,14 +89,14 @@
             <div class="form-group">
                 <fieldset>
                     <legend>Mulai</legend>
-                    <input type="date" name="formDate" id="" >
+                    <input type="date" name="formDate" id="" value="{{ $formDate }}" >
                 </fieldset>
             </div>
 
             <div class="form-group">
                 <fieldset>
                     <legend>Sampai</legend>
-                    <input type="date" name="toDate" id="" >
+                    <input type="date" name="toDate" id="" value="{{ $toDate }}">
                 </fieldset>
             </div>
 
@@ -87,8 +107,9 @@
     </div>
 
     @if (isset($transactions))
-    <div class="bottom-right">
-        <a href="{{ route('transaction.export', ['formDate' => $formDate, 'toDate' => $toDate]) }}"><i class='bx bx-cloud-download'></i>Unduh catatan mutasi</a>
-    </div>
+        <div class="bottom-right">
+            <a href="{{ route('transaction.export', ['formDate' => $formDate, 'toDate' => $toDate]) }}"><i
+                    class='bx bx-cloud-download'></i>Unduh catatan mutasi</a>
+        </div>
     @endif
 @endsection

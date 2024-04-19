@@ -1,7 +1,6 @@
 @extends('layout.main')
 
 @section('main-content')
-    
     <h3>Dompet</h3>
     <div class="switch-mobile">
         <a href="#bottom-mobile">Tambah dompet baru</a>
@@ -10,10 +9,17 @@
         <div class="top-table">
             <span class="bold">Data Dompet</span>
             <div class="short-data">
-                <span class="bold">Short by:</span>
-                <select name="" id="">
-                    <option value="" disabled selected>type</option>
-                </select>
+                <form action="/wallet/short" method="get">
+                    @csrf
+                    <span class="bold">Short by:</span>
+                    <select name="type" id="">
+                        <option value="" {{ $type == null ? 'selected' : '' }} disabled>Jenis</option>
+                        <option value="">Semua</option>
+                        <option value="Tunai" {{ $type == 'Tunai' ? 'selected' : '' }}>Tunai</option>
+                        <option value="Non Tunai" {{ $type == 'Non Tunai' ? 'selected' : '' }}>Non Tunai</option>
+                    </select>
+                    <button type="submit"><i class='bx bx-search'></i></button>
+                </form>
             </div>
         </div>
 
@@ -33,11 +39,11 @@
                         <td>{{ $item->wallet }}</td>
                         <td>{{ $item->type }}</td>
                         <td>Rp.
-                        @if (isset($walletBalances[$item->id]))
-                            {{ $walletBalances[$item->id] }}
-                        @else
-                            0
-                        @endif
+                            @if (isset($walletBalances[$item->id]))
+                                {{ $walletBalances[$item->id] }}
+                            @else
+                                0
+                            @endif
                         </td>
                         <td class="date-column">
                             {{ $item->created_at->format('d M Y') }}<span>{{ $item->created_at->format('h:i A') }}</span>
@@ -59,7 +65,7 @@
             </tbody>
         </table>
     </div>
-    <script src="{{asset('/js/actionBtn.js')}}"></script>
+    <script src="{{ asset('/js/actionBtn.js') }}"></script>
 @endsection
 
 @section('right-content')
@@ -91,5 +97,3 @@
         </form>
     </div>
 @endsection
-
-

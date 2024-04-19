@@ -132,15 +132,21 @@
 
     <div class="mid-section">
         <span class="bold">Statistik</span>
-        @foreach($percentagePerCategory as $categoryId => $percentageData)
-        <div class="bar-section">
-            <div class="info"><span>{{ $categoryNames[$categoryId] }}</span><span>{{ $percentageData['percentage'] }}%</span></div>
-            <div class="bar">
-                <div class="level-bar" style="background-color: {{ $percentageData['color'] }}; width: {{ $percentageData['percentage'] }}%;">
-                    <p>.</p>
+        @forelse($percentagePerCategory as $categoryId => $percentageData)
+            <div class="bar-section">
+                <div class="info">
+                    <span>{{ $categoryNames[$categoryId] }}</span><span>{{ $percentageData['percentage'] }}%</span></div>
+                <div class="bar">
+                    <div class="level-bar"
+                        style="background-color: {{ $percentageData['color'] }}; width: {{ $percentageData['percentage'] }}%;">
+                        <p>.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        @endforeach
+        @empty
+            <div class="bar-section">
+                <div class="info"><span>Transaksi Belum Terjadi</span></div>
+            </div>
+        @endforelse
     </div>
 @endsection

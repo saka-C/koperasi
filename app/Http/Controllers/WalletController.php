@@ -13,11 +13,34 @@ class WalletController extends Controller
     function index()
     {
         $walletBalances = WalletHelper::calculateWalletBalances();
-
+        $type = null;
         return view('wallet.index', [
             'wallet' => Wallet::latest()->get(),
-            'walletBalances' => $walletBalances
+            'walletBalances' => $walletBalances,
+            'type' => $type
         ]);
+    }
+
+    function short(Request $request){
+        $walletBalances = WalletHelper::calculateWalletBalances();
+        $type = $request->type;
+        
+
+        if ($type) {
+            $wallet = Wallet::where('type', $type)->latest()->get();
+            return view('wallet.index',[
+                'wallet' => $wallet,
+                'type' => $type,
+                'walletBalances' => $walletBalances
+            ]);
+        }else{
+            $wallet = Wallet::latest()->get();
+            return view('wallet.index',[
+                'wallet' => $wallet,
+                'type' => $type,
+                'walletBalances' => $walletBalances
+            ]);
+        }
     }
 
     function store(Request $request)

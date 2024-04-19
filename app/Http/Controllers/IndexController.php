@@ -82,7 +82,6 @@ class IndexController extends Controller
         }
 
         // Dapatkan nama-nama kategori
-        // Dapatkan nama-nama kategori
         $categoryNames = Category::pluck('category', 'id');
 
         // Persentase Keterlibatan Setiap Kategori
@@ -92,10 +91,18 @@ class IndexController extends Controller
 
         $totalTransaction = $categoryTotals->sum('total_amount');
 
+        // Dapatkan informasi tipe kategori dari tabel 'category'
+        $categoryTypes = Category::pluck('type', 'id');
+
         $percentagePerCategory = [];
         foreach ($categoryTotals as $categoryTotal) {
             $percentage = ($categoryTotal->total_amount / $totalTransaction) * 100;
-            $color = $this->generateRandomColor();
+
+            // Ambil tipe kategori berdasarkan id kategori dari hasil query
+            $categoryType = $categoryTypes[$categoryTotal->category_id];
+
+            // Tetapkan warna berdasarkan tipe kategori
+            $color = ($categoryType === 'Pemasukan') ? '#C8EE43' : '#FD3C4A';
 
             $percentagePerCategory[$categoryTotal->category_id] = [
                 'percentage' => round($percentage),
@@ -118,10 +125,5 @@ class IndexController extends Controller
             'categoryNames' => $categoryNames,
             'percentagePerCategory' => $percentagePerCategory,
         ]);
-    }
-
-    private function generateRandomColor()
-    {
-        return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
     }
 }
